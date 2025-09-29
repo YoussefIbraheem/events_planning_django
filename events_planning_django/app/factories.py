@@ -1,13 +1,21 @@
 from .models import CustomUser
 from faker import Faker
+from abc import ABC, abstractmethod
 
 factory_faker = Faker()
 
+class AbstractFactory(ABC):
+    @staticmethod
+    @abstractmethod
+    def create(**kwargs):
+        pass
 
-class UserFactory:
+
+
+class UserFactory(AbstractFactory):
 
     @staticmethod
-    def create(self, **kwargs):
+    def create(**kwargs):
         return {
             "username": kwargs.get("username", factory_faker.unique.user_name()),
             "email": kwargs.get("email", factory_faker.unique.email()),
