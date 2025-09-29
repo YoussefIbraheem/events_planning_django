@@ -6,6 +6,7 @@ factory_faker = Faker()
 
 class UserFactory:
 
+    @staticmethod
     def create(self, **kwargs):
         return {
             "username": kwargs.get("username", factory_faker.unique.user_name()),
